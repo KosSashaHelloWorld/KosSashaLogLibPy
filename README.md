@@ -1,0 +1,2 @@
+# AlexLogLibPy
+Small logging package
