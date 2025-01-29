@@ -2,7 +2,7 @@
 import string
 import sys
 import threading
-import traceback
+from traceback import print_stack
 
 
 class Logger:
@@ -52,7 +52,7 @@ class Logger:
     def __printStackTrace(stackTraceLines: int = 0):  
         # __FRAMES_BACK(3) is an actual amount of (frame.f_back) 
         # times to do not to show log lib logic in user's code
-        traceback.print_stack(
+        print_stack(
             f=sys._getframe(Logger.__FRAMES_BACK), 
             limit=stackTraceLines)
         print()

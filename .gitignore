@@ -1,5 +1,4 @@
 .vscode
-src/__pycache__/__init__.cpython-311.pyc
-src/package_KosSasha/__pycache__/__init__.cpython-311.pyc
-src/package_KosSasha/__pycache__/module_logger.cpython-311.pyc
+src/__pycache__/*
+src/logger_KosSasha/__pycache__/*
 test.py

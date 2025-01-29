@@ -1,1 +1,0 @@
-'''Small logger package'''
