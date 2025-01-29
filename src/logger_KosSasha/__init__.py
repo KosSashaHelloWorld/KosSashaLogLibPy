@@ -1,5 +1,4 @@
 '''Small logger module'''
-import string
 import sys
 import threading
 from traceback import print_stack
@@ -58,7 +57,7 @@ class Logger:
         print()
 
     @staticmethod
-    def logShot(stackTraceLines: int = 0, msg: string = ""):
+    def logShot(stackTraceLines: int = 0, msg: str = ""):
         threadStr = "\n[thread={threadStr:X}] [LOGSHOT]".format(threadStr = threading.get_ident())
         print(threadStr + msg)
 
@@ -69,43 +68,44 @@ class Logger:
         ''':return: true if level of current operation is equal or less than the logger level'''
         return self.__levelProperty >= level
     
-    def __log(self, msg: string):
+    def __log(self, msg: str):
         threadStr = self.__LOG_DELIMITER + "[thread={threadStr:X}]".format(threadStr = threading.get_ident())
         print(threadStr + msg)
 
         if (self.__stackTraceLines):
             Logger.__printStackTrace(stackTraceLines=self.__stackTraceLines)
         
-    def __color(self, color: string, str: string) -> string:
-        return color + str + self.__ANSI_CLEAR
+    def __color(self, color: str, msg: str) -> str:
+        return color + msg + self.__ANSI_CLEAR
     
-    def dbg(self, msg: string = ""):
+    def dbg(self, msg: str = ""):
         '''Shorthand for "logger.log(Logger.DEBUG, msg)", but faster'''
         if self.__levelIs(Logger.DEBUG):
             self.__log(self.__color(self.__ANSI_WHITE, Logger.__DEBUG_STR + msg))
 
-    def inf(self, msg: string = ""):
+    def inf(self, msg: str = ""):
         '''Shorthand for "logger.log(Logger.INFO, msg)", but faster'''
         if self.__levelIs(Logger.INFO):
             self.__log(self.__color(self.__ANSI_GREEN, Logger.__INFO_STR + msg))
 
-    def wrn(self, msg: string = ""):
+    def wrn(self, msg: str = ""):
         '''Shorthand for "logger.log(Logger.WARNING, msg)", but faster'''
         if self.__levelIs(Logger.WARNING):
             self.__log(self.__color(self.__ANSI_YELLOW, Logger.__WARNING_STR + msg))
     
-    def err(self, msg: string = ""):
+    def err(self, msg: str = ""):
         '''Shorthand for "logger.log(Logger.ERROR, msg)", but faster'''
         if self.__levelIs(Logger.ERROR):
             self.__log(self.__color(self.__ANSI_RED, Logger.__ERROR_STR + msg))
 
-    def log(self, level: int = DEBUG, msg: string = ""):
+    def log(self, level: int = DEBUG, msg: str = ""):
         ''':Printig your message at defined level, 
         but "logger.log(Logger.INFO, msg)" works slower 
         than just "logger.inf(msg)"
         
-        :param level: The level of log message ()
+        :param level: The level of log message
         :param msg: Message to log
+        
         '''
         if self.__levelIs(level):
 
